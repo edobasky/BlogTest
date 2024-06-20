@@ -1,6 +1,7 @@
 ﻿using BlogtestAssessment.Data;
 using BlogtestAssessment.Models.Entity;
 using BlogtestAssessment.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogtestAssessment.Repository.Implementations
 {
@@ -12,12 +13,12 @@ namespace BlogtestAssessment.Repository.Implementations
 
         public void CreateNewBlog(Blog blog, int AuthoId)
         {
-            throw new NotImplementedException();
+            blog.AuthorId = AuthoId;
+            Create(blog);
         }
 
-        public Task<IEnumerable<Blog>> GetAllBlogsByAnAuthor(int AuthorId, bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<Blog>> GetAllBlogsByAnAuthor(int AuthorId, bool trackChanges) =>
+            await FindByCondition(bg => bg.AuthorId == AuthorId, trackChanges)
+            .ToListAsync();
     }
 }
