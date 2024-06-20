@@ -4,6 +4,8 @@ namespace BlogtestAssessment.Repository.Interface
 {
     public interface IAuthorRepository
     {
-        void CreateewAuthor(Author author);
+        void CreateAuthor(Author author);
+
+        Task<bool> CheckAuthorExist(string email, bool trackChanges);
     }
 }
