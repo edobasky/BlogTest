@@ -23,6 +23,17 @@ namespace BlogtestAssessment.Repository.Implementations
             return true;
         }
 
+        public async Task<bool> CheckAuthorExistById(int Id, bool trackChanges)
+        {
+            var userCheck = await FindByCondition(au => au.Id == Id, trackChanges).FirstOrDefaultAsync();
+
+            if (userCheck is null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void CreateAuthor(Author author)
         {
             Create(author);

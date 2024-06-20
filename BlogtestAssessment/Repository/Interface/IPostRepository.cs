@@ -6,5 +6,7 @@ namespace BlogtestAssessment.Repository.Interface
     {
         void CreateNewPost(Post post, int BlogId);
         Task<IEnumerable<Post>> GetAllPostInABlog(int blogId,bool trackChanges);
+
+       
     }
 }

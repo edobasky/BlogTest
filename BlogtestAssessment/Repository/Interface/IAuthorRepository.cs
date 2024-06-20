@@ -7,5 +7,7 @@ namespace BlogtestAssessment.Repository.Interface
         void CreateAuthor(Author author);
 
         Task<bool> CheckAuthorExist(string email, bool trackChanges);
+
+        Task<bool> CheckAuthorExistById(int Id, bool trackChanges);
     }
 }

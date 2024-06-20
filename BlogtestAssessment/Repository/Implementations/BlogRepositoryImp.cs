@@ -11,9 +11,15 @@ namespace BlogtestAssessment.Repository.Implementations
         {
         }
 
-        public void CreateNewBlog(Blog blog, int AuthoId)
+        public async Task<bool> CheckBlogExist(int blogId, bool trackChanges)
         {
-            blog.AuthorId = AuthoId;
+            var blogCheckResult = await FindByCondition(bg => bg.Id == blogId, trackChanges).FirstOrDefaultAsync();
+
+            return blogCheckResult == null ? false : true;
+        }
+
+        public void CreateNewBlog(Blog blog)
+        {
             Create(blog);
         }
 
