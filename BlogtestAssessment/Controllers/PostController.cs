@@ -1,4 +1,5 @@
 ﻿using BlogtestAssessment.Features.Commands.CreatePost;
+using BlogtestAssessment.Features.Queries.BlogPosts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,14 @@ namespace BlogtestAssessment.Controllers
         {
             var postCreationResponse = await _sender.Send(postCreate);
             return Ok(postCreationResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllBlogPost(int blogId)
+        {
+            var blogPostsResponse = await _sender.Send(new GetBlogsPost() { Id = blogId});
+
+            return Ok(blogPostsResponse);
         }
     }
 }
