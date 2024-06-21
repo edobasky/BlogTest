@@ -1,4 +1,5 @@
 ﻿using BlogtestAssessment.Data;
+using BlogtestAssessment.Models.Dto;
 using BlogtestAssessment.Models.Entity;
 using BlogtestAssessment.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -38,5 +39,11 @@ namespace BlogtestAssessment.Repository.Implementations
         {
             Create(author);
         }
+
+        public async Task<IEnumerable<AuthorReturnDto>> GetAllAuthors(bool trackChanges, CancellationToken cancellationToken) =>
+            await FindAll(trackChanges)
+            .Select(au => new AuthorReturnDto { Email = au.Email, Id = au.Id, Name = au.Name })
+            .ToListAsync(cancellationToken);
+       
     }
 }

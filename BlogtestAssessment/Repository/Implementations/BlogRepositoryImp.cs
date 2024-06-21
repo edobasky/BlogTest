@@ -1,4 +1,5 @@
 ﻿using BlogtestAssessment.Data;
+using BlogtestAssessment.Models.Dto;
 using BlogtestAssessment.Models.Entity;
 using BlogtestAssessment.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -23,8 +24,23 @@ namespace BlogtestAssessment.Repository.Implementations
             Create(blog);
         }
 
-        public async Task<IEnumerable<Blog>> GetAllBlogsByAnAuthor(int AuthorId, bool trackChanges) =>
-            await FindByCondition(bg => bg.AuthorId == AuthorId, trackChanges)
-            .ToListAsync();
+
+        public async Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogs(bool trackChanges, CancellationToken cancellation) => 
+            await FindAll(trackChanges).Select(bg => new BlogReturnResponseDto()
+            {
+                Id = bg.Id,
+                Name = bg.Name,
+                Url = bg.Url
+            }) .ToListAsync(); 
+
+        public async Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogsByAnAuthor(int AuthorId, bool trackChanges, CancellationToken cancellation) =>
+            await FindByCondition(bg => bg.AuthorId == AuthorId, trackChanges).Select(bg => new BlogReturnResponseDto()
+            {
+                Id = bg.Id,
+                Name = bg.Name,
+                Url = bg.Url,
+                AuthorId = bg.AuthorId
+            })
+            .ToListAsync(cancellation);
     }
 }

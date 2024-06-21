@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Queries\" />
+    <Folder Include="Features\Queries\BlogPosts\" />
   </ItemGroup>
 
 </Project>

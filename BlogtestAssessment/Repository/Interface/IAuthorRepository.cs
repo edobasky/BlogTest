@@ -1,4 +1,5 @@
-﻿using BlogtestAssessment.Models.Entity;
+﻿using BlogtestAssessment.Models.Dto;
+using BlogtestAssessment.Models.Entity;
 
 namespace BlogtestAssessment.Repository.Interface
 {
@@ -9,5 +10,7 @@ namespace BlogtestAssessment.Repository.Interface
         Task<bool> CheckAuthorExist(string email, bool trackChanges);
 
         Task<bool> CheckAuthorExistById(int Id, bool trackChanges);
+
+        Task<IEnumerable<AuthorReturnDto>> GetAllAuthors(bool trackChanges, CancellationToken cancellationToken);
     }
 }
