@@ -12,9 +12,8 @@ namespace BlogtestAssessment.Repository.Implementations
         }
 
 
-        public void CreateNewPost(Post post, int BlogId)
+        public void CreateNewPost(Post post)
         {
-            post.BlogId = BlogId;
             Create(post);
         }
 

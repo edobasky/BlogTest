@@ -1,4 +1,5 @@
 ﻿using BlogtestAssessment.Features.Commands.CreateAuthor;
+using BlogtestAssessment.Features.Queries.Author;
 using BlogtestAssessment.Models.Dto;
 using BlogtestAssessment.Models.Entity;
 using BlogtestAssessment.Repository.Interface;
@@ -48,6 +49,14 @@ namespace BlogtestAssessment.Controllers
             bool authorCreation = await _sender.Send(authorCreate);
             return Ok(authorCreation);
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAuthors()
+        {
+            var authorsResponse = await _sender.Send(new GetAuthorQuery() {});
+
+            return Ok(authorsResponse);
         }
     }
 }
