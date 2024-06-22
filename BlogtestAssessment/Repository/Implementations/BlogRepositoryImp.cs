@@ -33,8 +33,8 @@ namespace BlogtestAssessment.Repository.Implementations
                 Url = bg.Url
             }) .ToListAsync(); 
 
-        public async Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogsByAnAuthor(int AuthorId, bool trackChanges, CancellationToken cancellation) =>
-            await FindByCondition(bg => bg.AuthorId == AuthorId, trackChanges).Select(bg => new BlogReturnResponseDto()
+        public async Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogsByAnAuthor(int Id, bool trackChanges, CancellationToken cancellation) =>
+            await FindByCondition(bg => bg.AuthorId == Id, trackChanges).Select(bg => new BlogReturnResponseDto()
             {
                 Id = bg.Id,
                 Name = bg.Name,
