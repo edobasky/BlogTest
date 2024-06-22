@@ -18,13 +18,15 @@ namespace BlogtestAssessment.Features.Commands.CreateBlog
         public async Task<Response<BlogCreateResponseDto>> Handle(CreateBlogCommand request, CancellationToken cancellationToken)
         {
 
+            if (request.Url is null || request.Name is null) return Response<BlogCreateResponseDto>.Fail("Empty property values not allows");
+
             // Check Author exist
 
-            var authorCheck = await _unitofWork.AuthorRepository.CheckAuthorExistById(request.AuthorId, false);
+                    var authorCheck = await _unitofWork.AuthorRepository.CheckAuthorExistById(request.AuthorId, false);
 
-            if (!authorCheck) return Response<BlogCreateResponseDto>.Fail("The Author does not exist, please create the author of the blog and try again");
+                    if (!authorCheck) return Response<BlogCreateResponseDto>.Fail("The Author does not exist, please create the author of the blog and try again");
 
-           
+
 
             Blog blogToCreateMapping = new Blog()
             {

@@ -8,7 +8,7 @@ namespace BlogtestAssessment.Repository.Interface
         void CreateNewBlog(Blog blog);
 
         Task<bool> CheckBlogExist(int blogId, bool trackChanges);
-        Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogsByAnAuthor(int AuthorId, bool trackChanges, CancellationToken cancellation);
+        Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogsByAnAuthor(int Id, bool trackChanges, CancellationToken cancellation);
 
         Task<IEnumerable<BlogReturnResponseDto>> GetAllBlogs(bool trackChanges, CancellationToken cancellation);
 

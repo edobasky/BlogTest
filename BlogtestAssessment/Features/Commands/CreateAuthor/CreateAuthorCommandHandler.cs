@@ -1,5 +1,7 @@
-﻿using BlogtestAssessment.Models.Entity;
+﻿using BlogtestAssessment.Models.Dto;
+using BlogtestAssessment.Models.Entity;
 using BlogtestAssessment.Repository.Interface;
+using BlogtestAssessment.Utilities;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,6 +18,8 @@ namespace BlogtestAssessment.Features.Commands.CreateAuthor
 
         public async Task<bool> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
         {
+
+            if (request.Email is null || request.Name is null) return false;
 
             Author authorToCreateMapping = new Author()
             {
